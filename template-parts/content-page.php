@@ -7,6 +7,18 @@
 
 ?>
 
-<?php the_content(); ?>
+<cleanblog-header></cleanblog-header>
+
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+    <img ng-if="!loaded"
+         ng-src="http://localhost/ifeature/wp-content/themes/cleanblog/img/loader.gif" class="aligncenter"/>
+
+    <div class="post-preview" id="{{ post.id }}">
+        <div class="post-content" ng-bind-html="post.content.rendered"></div>
+    </div>
+
+</div>
+<div class="clear"></div>
 
 <?php wp_link_pages(); ?>

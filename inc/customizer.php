@@ -65,6 +65,78 @@ function cleanblog_register_theme_customizer( $wp_customize ) {
 		)
 	);
 
+    /* Linkedin URL */
+    $wp_customize->add_setting(
+        'cleanblog_social_linkedin',
+        array(
+            'default'            => '',
+            'sanitize_callback'  => 'cleanblog_sanitize_input',
+            'transport'          => 'refresh'
+        )
+    );
+    $wp_customize->add_control(
+        'cleanblog_social_linkedin',
+        array(
+            'section'  => 'cleanblog_social_links',
+            'label'    => 'Linkedin',
+            'type'     => 'text'
+        )
+    );
+
+    /* WordPress URL */
+    $wp_customize->add_setting(
+        'cleanblog_social_wordpress',
+        array(
+            'default'            => '',
+            'sanitize_callback'  => 'cleanblog_sanitize_input',
+            'transport'          => 'refresh'
+        )
+    );
+    $wp_customize->add_control(
+        'cleanblog_social_wordpress',
+        array(
+            'section'  => 'cleanblog_social_links',
+            'label'    => 'WordPress',
+            'type'     => 'text'
+        )
+    );
+
+    /* StackOverflow URL */
+    $wp_customize->add_setting(
+        'cleanblog_social_stackoverflow',
+        array(
+            'default'            => '',
+            'sanitize_callback'  => 'cleanblog_sanitize_input',
+            'transport'          => 'refresh'
+        )
+    );
+    $wp_customize->add_control(
+        'cleanblog_social_stackoverflow',
+        array(
+            'section'  => 'cleanblog_social_links',
+            'label'    => 'Stackoverflow',
+            'type'     => 'text'
+        )
+    );
+
+    /* Github URL */
+    $wp_customize->add_setting(
+        'cleanblog_social_github',
+        array(
+            'default'            => '',
+            'sanitize_callback'  => 'cleanblog_sanitize_input',
+            'transport'          => 'refresh'
+        )
+    );
+    $wp_customize->add_control(
+        'cleanblog_social_github',
+        array(
+            'section'  => 'cleanblog_social_links',
+            'label'    => 'Github',
+            'type'     => 'text'
+        )
+    );
+
 	/* Twitter URL */
 	$wp_customize->add_setting(
 		'cleanblog_social_twitter',
@@ -133,42 +205,6 @@ function cleanblog_register_theme_customizer( $wp_customize ) {
 		array(
 			'section'  => 'cleanblog_social_links',
 			'label'    => 'Pinterest',
-			'type'     => 'text'
-		)
-	);
-
-	/* Linkedin URL */
-	$wp_customize->add_setting(
-		'cleanblog_social_linkedin',
-		array(
-			'default'            => '',
-			'sanitize_callback'  => 'cleanblog_sanitize_input',
-			'transport'          => 'refresh'
-		)
-	);
-	$wp_customize->add_control(
-		'cleanblog_social_linkedin',
-		array(
-			'section'  => 'cleanblog_social_links',
-			'label'    => 'Linkedin',
-			'type'     => 'text'
-		)
-	);
-
-	/* Github URL */
-	$wp_customize->add_setting(
-		'cleanblog_social_github',
-		array(
-			'default'            => '',
-			'sanitize_callback'  => 'cleanblog_sanitize_input',
-			'transport'          => 'refresh'
-		)
-	);
-	$wp_customize->add_control(
-		'cleanblog_social_github',
-		array(
-			'section'  => 'cleanblog_social_links',
-			'label'    => 'Github',
 			'type'     => 'text'
 		)
 	);

@@ -292,6 +292,7 @@ function cleanblog_header() { ?>
 			<?php if ( function_exists( 'the_subtitle' ) ) {
 				the_subtitle( '<h2 class="subheading">', '</h2>' );
 			} ?>
+                        <search-form></search-form>
                         <span class="meta"><?php cleanblog_posted_on(); ?></span>
                     </div>
                 </div>
@@ -397,6 +398,46 @@ if ( ! function_exists( 'cleanblog_social' ) ) :
 function cleanblog_social() { ?>
 
 	<ul class="list-inline text-center">
+        <?php if ( get_theme_mod( 'cleanblog_social_linkedin' ) !='' ) { ?>
+            <li id="social-linkedin">
+                <a href="<?php echo get_theme_mod( 'cleanblog_social_linkedin' ); ?>" target="_blank">
+				<span class="fa-stack fa-lg">
+					<i class="fa fa-circle fa-stack-2x"></i>
+					<i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+				</span>
+                </a>
+            </li>
+        <?php } ?>
+        <?php if ( get_theme_mod( 'cleanblog_social_wordpress' ) !='' ) { ?>
+            <li id="social-github">
+                <a href="<?php echo get_theme_mod( 'cleanblog_social_wordpress' ); ?>" target="_blank">
+				<span class="fa-stack fa-lg">
+					<i class="fa fa-circle fa-stack-2x"></i>
+					<i class="fa fa-wordpress fa-stack-1x fa-inverse"></i>
+				</span>
+                </a>
+            </li>
+        <?php } ?>
+        <?php if ( get_theme_mod( 'cleanblog_social_stackoverflow' ) !='' ) { ?>
+            <li id="social-github">
+                <a href="<?php echo get_theme_mod( 'cleanblog_social_stackoverflow' ); ?>" target="_blank">
+				<span class="fa-stack fa-lg">
+					<i class="fa fa-circle fa-stack-2x"></i>
+					<i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+				</span>
+                </a>
+            </li>
+        <?php } ?>
+        <?php if ( get_theme_mod( 'cleanblog_social_github' ) !='' ) { ?>
+            <li id="social-github">
+                <a href="<?php echo get_theme_mod( 'cleanblog_social_github' ); ?>" target="_blank">
+				<span class="fa-stack fa-lg">
+					<i class="fa fa-circle fa-stack-2x"></i>
+					<i class="fa fa-github fa-stack-1x fa-inverse"></i>
+				</span>
+                </a>
+            </li>
+        <?php } ?>
 		<?php if ( get_theme_mod( 'cleanblog_social_twitter' ) !='' ) { ?>
 		<li id="social-twitter">
 			<a href="<?php echo get_theme_mod( 'cleanblog_social_twitter' ); ?>" target="_blank">
@@ -433,26 +474,6 @@ function cleanblog_social() { ?>
 				<span class="fa-stack fa-lg">
 					<i class="fa fa-circle fa-stack-2x"></i>
 					<i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
-				</span>
-			</a>
-		</li>
-		<?php } ?>
-		<?php if ( get_theme_mod( 'cleanblog_social_linkedin' ) !='' ) { ?>
-		<li id="social-linkedin">
-			<a href="<?php echo get_theme_mod( 'cleanblog_social_linkedin' ); ?>" target="_blank">
-				<span class="fa-stack fa-lg">
-					<i class="fa fa-circle fa-stack-2x"></i>
-					<i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-				</span>
-			</a>
-		</li>
-		<?php } ?>
-		<?php if ( get_theme_mod( 'cleanblog_social_github' ) !='' ) { ?>
-		<li id="social-github">
-			<a href="<?php echo get_theme_mod( 'cleanblog_social_github' ); ?>" target="_blank">
-				<span class="fa-stack fa-lg">
-					<i class="fa fa-circle fa-stack-2x"></i>
-					<i class="fa fa-github fa-stack-1x fa-inverse"></i>
 				</span>
 			</a>
 		</li>

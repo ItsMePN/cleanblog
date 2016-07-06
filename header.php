@@ -8,8 +8,9 @@
  */
 
 ?><!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?> ng-app="pnApp">
 <head>
+<base href="/prasadnevase/">
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
@@ -55,9 +56,7 @@
         </div>
         <!-- /.container -->
     </nav>
-	
-	<?php cleanblog_header(); ?>
 
-    <!-- Main Content -->
-    <div class="container">
-        <div class="row">
+	<?php //cleanblog_header(); ?>
+
+
