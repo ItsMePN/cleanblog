@@ -6,7 +6,7 @@ Clean Blog
 
 **Requires at least:** 4.5
 
-**Tested up to:** 4.5.2
+**Tested up to:** 4.5.3
 
 **Stable tag:** 1.0.0
 
