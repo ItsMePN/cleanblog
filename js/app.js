@@ -1,7 +1,7 @@
 
 var __env;
 
-// Import variables if present (from env.js)
+/* Import variables if present */
 if(window){
     Object.assign(__env, window.__env);
 }
@@ -9,7 +9,7 @@ if(window){
 var app = angular.module('pnApp', ['ngRoute', 'ngSanitize', 'angularUtils.directives.dirDisqus']);
 
 
-// Register environment in AngularJS as constant
+/* Register environment in AngularJS as constant */
 app.constant('__env', __env);
 
 app.config( function( $routeProvider, $locationProvider ) {
@@ -35,7 +35,7 @@ app.config( function( $routeProvider, $locationProvider ) {
     $routeProvider
     .when( '/pages/:slug', {
         title: 'page',
-        templateUrl: pnLocalized.parts + 'content-page.php',
+        templateUrl: pnLocalized.parts + 'content-page.html',
         controller: 'content-page'
     });
 
@@ -82,7 +82,7 @@ app.config( function( $routeProvider, $locationProvider ) {
 
     //$routeProvider
     //.when( '/?s=', {
-    //        templateUrl: pnLocalized.parts + 'content-search.php',
+    //        templateUrl: pnLocalized.parts + 'content-search.html',
     //        controller: 'content-search'
     //});
 

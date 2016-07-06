@@ -26,7 +26,7 @@
 				<?php if (get_theme_mod( 'cleanblog_footer_copyright_text' ) !='') { ?>
 					<p class="copyright text-muted"><?php echo get_theme_mod( 'cleanblog_footer_copyright_text' ); ?></p>
 				<?php } else { ?>
-                    <p class="copyright text-muted"><a href="<?php echo esc_url( __( 'https://wordpress.org/', 'cleanblog' ) ); ?>" target="_blank"><?php printf( esc_html__( 'Powered by %s', 'cleanblog' ), 'WordPress' ); ?></a> &middot; <?php printf( esc_html__( '%1$s by %2$s.', 'cleanblog' ), 'Personal Blog theme', '<a href="https://github.com/ItsMePN" rel="designer" target="_blank">Prasad Nevase</a>' ); ?></p>
+                    <p class="copyright text-muted"><a href="<?php echo esc_url( __( 'https://wordpress.org/', 'cleanblog' ) ); ?>" target="_blank"><?php printf( esc_html__( 'Powered by %s', 'cleanblog' ), 'WordPress' ); ?></a> &middot; <?php printf( esc_html__( '%1$s by %2$s.', 'cleanblog' ), 'RESTAngular Personal Blog theme', '<a href="https://github.com/ItsMePN/cleanblog/" rel="designer" target="_blank">Prasad Nevase</a>' ); ?></p>
 				<?php } ?>
 				<?php do_action('cleanblog_footer_bottom'); ?>
                 </div>

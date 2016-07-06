@@ -62,68 +62,6 @@ function cleanblog_register_required_plugins()
 				'The following required plugins are currently inactive: %1$s.',
 				'cleanblog'
 			),
-			/*
-				'notice_can_install_recommended'  => _n_noop(
-					/* translators: 1: plugin name(s). * /
-					'This theme recommends the following plugin: %1$s.',
-					'This theme recommends the following plugins: %1$s.',
-					'cleanblog'
-				),
-				'notice_ask_to_update'            => _n_noop(
-					/* translators: 1: plugin name(s). * /
-					'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.',
-					'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.',
-					'cleanblog'
-				),
-				'notice_ask_to_update_maybe'      => _n_noop(
-					/* translators: 1: plugin name(s). * /
-					'There is an update available for: %1$s.',
-					'There are updates available for the following plugins: %1$s.',
-					'cleanblog'
-				),
-				'notice_can_activate_required'    => _n_noop(
-					/* translators: 1: plugin name(s). * /
-					'The following required plugin is currently inactive: %1$s.',
-					'The following required plugins are currently inactive: %1$s.',
-					'cleanblog'
-				),
-				'notice_can_activate_recommended' => _n_noop(
-					/* translators: 1: plugin name(s). * /
-					'The following recommended plugin is currently inactive: %1$s.',
-					'The following recommended plugins are currently inactive: %1$s.',
-					'cleanblog'
-				),
-				'install_link'                    => _n_noop(
-					'Begin installing plugin',
-					'Begin installing plugins',
-					'cleanblog'
-				),
-				'update_link' 					  => _n_noop(
-					'Begin updating plugin',
-					'Begin updating plugins',
-					'cleanblog'
-				),
-				'activate_link'                   => _n_noop(
-					'Begin activating plugin',
-					'Begin activating plugins',
-					'cleanblog'
-				),
-				'return'                          => __( 'Return to Required Plugins Installer', 'cleanblog' ),
-				'plugin_activated'                => __( 'Plugin activated successfully.', 'cleanblog' ),
-				'activated_successfully'          => __( 'The following plugin was activated successfully:', 'cleanblog' ),
-				/* translators: 1: plugin name. * /
-				'plugin_already_active'           => __( 'No action taken. Plugin %1$s was already active.', 'cleanblog' ),
-				/* translators: 1: plugin name. * /
-				'plugin_needs_higher_version'     => __( 'Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin.', 'cleanblog' ),
-				/* translators: 1: dashboard link. * /
-				'complete'                        => __( 'All plugins installed and activated successfully. %1$s', 'cleanblog' ),
-				'dismiss'                         => __( 'Dismiss this notice', 'cleanblog' ),
-				'notice_cannot_install_activate'  => __( 'There are one or more required or recommended plugins to install, update or activate.', 'cleanblog' ),
-				'contact_admin'                   => __( 'Please contact the administrator of this site for help.', 'cleanblog' ),
-
-				'nag_type'                        => '', // Determines admin notice type - can only be one of the typical WP notice classes, such as 'updated', 'update-nag', 'notice-warning', 'notice-info' or 'error'. Some of which may not work as expected in older WP versions.
-			),
-			*/
 		)
 	);
 
@@ -204,6 +142,7 @@ if (!function_exists('cleanblog_setup')) :
 		)));
 	}
 endif; // cleanblog_setup
+
 add_action('after_setup_theme', 'cleanblog_setup');
 
 /**
@@ -219,6 +158,22 @@ function cleanblog_content_width()
 }
 
 add_action('after_setup_theme', 'cleanblog_content_width', 0);
+
+/**
+ * Adds custom classes to the array of body classes.
+ *
+ * @param array $classes Classes for the body element.
+ * @return array
+ */
+function cleanblog_body_classes( $classes ) {
+	// Adds a class of group-blog to blogs with more than 1 published author.
+	if ( is_multi_author() ) {
+		$classes[] = 'group-blog';
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'cleanblog_body_classes' );
 
 /**
  * Enqueue scripts and styles.
@@ -257,36 +212,20 @@ function cleanblog_scripts()
 		)
 	);
 
-	if (is_singular() && comments_open() && get_option('thread_comments')) {
-		wp_enqueue_script('comment-reply');
-	}
-
 }
 
 add_action('wp_enqueue_scripts', 'cleanblog_scripts');
-
-
-add_filter('contact-form-7', 'do_shortcode');
 
 /**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
 
-/**
- * Custom functions that act independently of the theme templates.
- */
-require get_template_directory() . '/inc/extras.php';
 
 /**
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-require get_template_directory() . '/inc/jetpack.php';
 
 /**
  * Remove container DIV from navigation menu in header.
