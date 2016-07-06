@@ -1,0 +1,13 @@
+<div>
+    <span class="posted-on">
+        <span ng-if="! (post.postcats | isEmpty)">
+            Posted in <span ng-repeat="cat in post.postcats"> <a ng-href="category/{{cat.slug}}" ng-bind-html="cat.name"></a> , </span>
+        </span>
+        <span ng-if="! (post.posttags | isEmpty)">
+            with tags: <span ng-repeat="tag in post.posttags"> <a ng-href="tag/{{tag.slug}}" ng-bind-html="tag.name"></a> , </span>
+        </span>
+        <span ng-if="! (post.date | isEmpty)">
+            on {{ post.date | date:'d MMMM y' }}
+        </span>
+    </span>
+</div>

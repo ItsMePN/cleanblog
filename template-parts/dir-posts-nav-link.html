@@ -1,0 +1,12 @@
+<div class="cleanblog-pagination">
+    <ul class="pager">
+        <li class="next" ng-if="currentPage>1">
+            <a href="{{postsNavLink.prevLink}}" class="prev-link">{{postsNavLink.prevLabel}}</a>
+        </li>
+
+        <!--<span ng-if="currentPage>1 && currentPage<totalPages" class="sep">{{postsNavLink.sep}}</span>-->
+        <li class="previous" ng-if="currentPage<totalPages">
+            <a href="{{postsNavLink.nextLink}}" class="next-link">{{postsNavLink.nextLabel}}</a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,29 @@
+<!-- Main Content -->
+
+<!--<header class="intro-header" style="background-image: url('http://localhost/ifeature/wp-content/themes/cleanblog/img/home-bg.jpg');">-->
+<header class="intro-header" style="background-image: url('{{header_image}}')">
+
+    <!--<img class="cleanblog-header-image fade-in" ng-src="{{post.featured_image_url?post.featured_image_url:'http://localhost/ifeature/wp-content/themes/cleanblog/img/home-bg.jpg'}}" alt="header-image" style="position:absolute;"/>-->
+    <!--<img class="cleanblog-header-image animate-show" ng-src="{{header_image}}" alt="header-image" style="position:absolute;" fade-in/>-->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1 class="homeintro" ng-if="! post.title.rendered">{{pageTitle}}</h1>
+                    <h1 class="homeintro" ng-bind-html="post.title.rendered"> </h1>
+                    <hr class="small" ng-if="post.title.rendered || pageTitle">
+                    <span class="subheading" ng-if="! post.date" ng-bind-html="pageDesc"></span>
+                    <post-social ng-if="post.type == 'post'"></post-social>
+                </div>
+                <!-- /.site-heading -->
+            </div>
+            <!-- /.col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</header>
+
+<div class="container">
+    <div class="row">

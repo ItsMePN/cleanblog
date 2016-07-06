@@ -1,0 +1,26 @@
+<?php
+/**
+ * Template part for displaying single posts.
+ *
+ * @package Clean Blog
+ */
+
+?>
+
+<cleanblog-header></cleanblog-header>
+
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+    <img ng-if="!loaded"
+         ng-src="http://localhost/ifeature/wp-content/themes/cleanblog/img/loader.gif" class="aligncenter"/>
+
+    <div class="post-preview" id="{{ post.id }}">
+        <post-meta class="post-meta"></post-meta>
+        <div class="post-content" ng-bind-html="post.content.rendered"></div>
+    </div>
+<br/>
+<dir-disqus config="disqusConfig"></dir-disqus>
+
+</div>
+
+<div class="clear"></div>
