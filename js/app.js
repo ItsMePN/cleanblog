@@ -97,6 +97,7 @@ app.controller( 'content', function( $scope, $rootScope, $http, __env ) {
 
     $scope.loaded = false;
     $scope.header_image = window.__env.defaultHeaderImg;
+	$scope.loader_image = window.__env.loaderImg;
 
 	$http({
 	  method: 'GET',
@@ -124,6 +125,7 @@ app.controller('archive', function($scope, $http, $route, $routeParams, __env  )
 
     $scope.loaded = false;
     $scope.header_image = window.__env.defaultHeaderImg;
+	$scope.loader_image = window.__env.loaderImg;
 
     var getUrl,
         paged = '';
@@ -175,6 +177,7 @@ app.controller('archive', function($scope, $http, $route, $routeParams, __env  )
 app.controller('content-single', function( $scope, $http, $routeParams, __env  ) {
 
     $scope.loaded = false;
+	$scope.loader_image = window.__env.loaderImg;
 
 	$http({
 	  method: 'GET',
@@ -217,6 +220,7 @@ app.controller('content-single', function( $scope, $http, $routeParams, __env  )
 app.controller('content-page', function( $scope, $http, $routeParams, __env ) {
 
     $scope.loaded = false;
+	$scope.loader_image = window.__env.loaderImg;
 
     $http({
         method: 'GET',
@@ -251,6 +255,7 @@ app.controller('Paged', function( $scope, $routeParams, $http, __env ) {
 
     $scope.loaded = false;
     $scope.header_image = window.__env.defaultHeaderImg;
+	$scope.loader_image = window.__env.loaderImg;
 
     $http({
         method: 'GET',
@@ -290,7 +295,7 @@ app.directive('searchForm', function() {
                     console.log( $routeParams.s );
                     $http({
                         method: 'GET',
-                        url: 'http://localhost/ifeature/wp-json/wp/v2/posts?filter[s]=' + $routeParams.param1
+                        url: __env.apiUrl + 'posts?filter[s]=' + $routeParams.param1
                     }).then(function successCallback(response) {
                         console.log( response.data );
                         $scope.posts = response.data;
@@ -416,8 +421,9 @@ app.filter('isEmpty', function () {
 });
 
 
-// https://docs.angularjs.org/guide/bootstrap
-//
-//    angular.element(document).ready(function() {
-//    angular.bootstrap(document, ['myApp']);
-//});
+/* https://docs.angularjs.org/guide/bootstrap */
+/*
+    angular.element(document).ready(function() {
+    angular.bootstrap(document, ['pnApp']);
+});
+*/
