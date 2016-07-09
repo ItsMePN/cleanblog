@@ -9,12 +9,14 @@
 	window.__env.siteDescription = '';
 	/* Site description */
 	window.__env.apiUrl = 'http://localhost/prasadnevase/wp-json/wp/v2/';
-	/* API url */
+	/* Change above to your API url. For production site it will be like http://example.com/wp-json/wp/v2/ */
 	window.__env.baseUrl = '/prasadnevase/';
-	/* Base url */
+	/* Change above to your base url. For production site it will be: / */
 	window.__env.siteUrl = 'http://localhost/prasadnevase/';
-	/* Site url */
+	/* Change above to yoru site url. For production site it will be like http://example.com/ */
 	window.__env.defaultHeaderImg = window.__env.siteUrl + 'wp-content/themes/cleanblog/img/home-bg.jpg';
+	/* Default header image */
+	window.__env.loaderImg = window.__env.siteUrl + 'wp-content/themes/cleanblog/img/loader.gif';
 	/* Default header image */
 
 	/* Use traditional javascript ajax as AngularJS env is not available here.
@@ -22,6 +24,7 @@
 	* */
 	var xmlhttp = new XMLHttpRequest();
 	var url = "http://localhost/prasadnevase/wp-json/";
+	/* Change above to appropriate URL in your case. For production site it will be like http://example.com/wp-json/ */
 	xmlhttp.onreadystatechange = function () {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			var site = JSON.parse(xmlhttp.responseText);
