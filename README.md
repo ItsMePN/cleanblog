@@ -32,19 +32,19 @@ You can view the theme in action [here](http://prasadnevase.com)
 ### Using The WordPress Dashboard
 
 1. Navigate to the 'Add New' Themes Dashboard
-1. Select `clean-blog.zip` from your computer
+1. Select `cleanblog.zip` from your computer
 1. Upload
 1. Activate the theme on the WordPress Themes Dashboard
 1. Install WordPress REST API (Version 2) plugin as instructed upon theme activation.
-1. Edit /js/env.js and update apiURL, siteURL, url to your own URLs.
+1. Edit /js/env.js and update apiURL, siteURL, url to your own URLs. Read the comments in the file for direction.
 1. Change the <base> tag in top of your header.php file to have appropriate base
 1. Enable pretty permalinks from **Settings > Permalinks** on WordPress dashboard
 1. That's it... Now visit front end!
 
 ### Using FTP
 
-1. Extract `clean-blog.zip` to your computer
-1. Upload the `clean-blog` directory to your `wp-content/themes` directory
+1. Extract `cleanblog.zip` to your computer
+1. Upload the `cleanblog` directory to your `wp-content/themes` directory
 1. Activate the theme on the WordPress Themes dashboard
 1. Remaining steps as mentioned above.
 
