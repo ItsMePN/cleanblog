@@ -25,4 +25,5 @@ sftp-config.json
 *.sublime-project
 *.sublime-workspace
 .phpintel
+js/env.js
 header.php
