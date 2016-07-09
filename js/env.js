@@ -17,7 +17,7 @@
 	window.__env.defaultHeaderImg = window.__env.siteUrl + 'wp-content/themes/cleanblog/img/home-bg.jpg';
 	/* Default header image */
 	window.__env.loaderImg = window.__env.siteUrl + 'wp-content/themes/cleanblog/img/loader.gif';
-	/* Default header image */
+	/* Default loader image */
 
 	/* Use traditional javascript ajax as AngularJS env is not available here.
 	*  Set up site title and site description as in WordPress
