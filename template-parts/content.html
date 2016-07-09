@@ -11,7 +11,7 @@
 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
     <img ng-if="!loaded"
-         ng-src="http://localhost/ifeature/wp-content/themes/cleanblog/img/loader.gif" class="aligncenter"/>
+         ng-src="{{ loader_image }}" class="aligncenter"/>
 
     <div id="{{ post.id }}" ng-class="{ load: !loaded }">
         <div class="post-preview" ng-repeat="post in posts">
