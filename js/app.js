@@ -79,7 +79,6 @@ app.config( function( $routeProvider, $locationProvider ) {
         controller: 'Paged'
     });
 
-
     //$routeProvider
     //.when( '/?s=', {
     //        templateUrl: pnLocalized.parts + 'content-search.html',
@@ -93,6 +92,8 @@ app.config( function( $routeProvider, $locationProvider ) {
 
 });
 
+/* Listing posts */
+
 app.controller( 'content', function( $scope, $rootScope, $http, __env ) {
 
     $scope.loaded = false;
@@ -103,7 +104,8 @@ app.controller( 'content', function( $scope, $rootScope, $http, __env ) {
 	  method: 'GET',
 	  url: __env.apiUrl + 'posts?filter[posts_per_page]=5'
 	}).then(function successCallback(response) {
-        // when the response is available
+        /* this callback will be called asynchronously
+         when the response is available */
         $scope.posts = response.data;
         $scope.pageTitle = window.__env.siteTitle;
         $scope.pageDesc = window.__env.siteDescription;
@@ -113,13 +115,15 @@ app.controller( 'content', function( $scope, $rootScope, $http, __env ) {
         $scope.totalPages = response.headers('X-WP-TotalPages');
 
     }, function errorCallback(response) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-        console.log("Something went wrong" + response.data.posts);
+        /* called asynchronously if an error occurs
+         or server returns response with an error status. */
+        console.log("Something went wrong: " + response.data.posts);
 
     });
 
 });
+
+/* Archive - category and tags */
 
 app.controller('archive', function($scope, $http, $route, $routeParams, __env  ) {
 
@@ -143,13 +147,12 @@ app.controller('archive', function($scope, $http, $route, $routeParams, __env  )
         $scope.pageDesc = $routeParams.tag;
     }
 
-    console.log( getUrl );
-
 	$http({
 	  method: 'GET',
 	  url: __env.apiUrl + getUrl
 	}).then(function successCallback(response) {
-        // when the response is available
+        /* this callback will be called asynchronously
+         when the response is available */
         $scope.posts = response.data;
         $scope.loaded = true;
 
@@ -163,9 +166,9 @@ app.controller('archive', function($scope, $http, $route, $routeParams, __env  )
         document.querySelector('title').innerHTML = $scope.pageTitle + ' | ' + $scope.pageDesc;	// this callback will be called asynchronously
 
     }, function errorCallback(response) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-        console.log("Something went wrong" + response.data.posts);
+        /* called asynchronously if an error occurs
+         or server returns response with an error status. */
+        console.log("Something went wrong: " + response.data.posts);
 
 	  });
 
@@ -174,7 +177,7 @@ app.controller('archive', function($scope, $http, $route, $routeParams, __env  )
 
 /* single article controller */
 
-app.controller('content-single', function( $scope, $http, $routeParams, __env  ) {
+app.controller('content-single', function( $scope, $http, $routeParams, $location, __env  ) {
 
     $scope.loaded = false;
 	$scope.loader_image = window.__env.loaderImg;
@@ -183,12 +186,14 @@ app.controller('content-single', function( $scope, $http, $routeParams, __env  )
 	  method: 'GET',
 	  url: __env.apiUrl + 'posts?filter[name]=' + $routeParams.slug
 	}).then(function successCallback(response) {
-        // this callback will be called asynchronously
-        // when the response is available
+        /* this callback will be called asynchronously
+         when the response is available */
+        if( ! response.data[0] ){
+            /* If not found, redirect to home page */
+                $location.path( __env.siteUrl );
+        }
+
         $scope.post = response.data[0];
-        console.log(response.data[0]);
-        console.log ($scope.post.id);
-        console.log ($scope.post.link);
 
         if ( $scope.post.featured_image_url == null )
             $scope.header_image = window.__env.defaultHeaderImg;
@@ -208,8 +213,8 @@ app.controller('content-single', function( $scope, $http, $routeParams, __env  )
         document.querySelector('title').innerHTML = $scope.pageTitle + ' - ' + $scope.pageDesc;
 
 	  }, function errorCallback(response) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
+        /* called asynchronously if an error occurs
+         or server returns response with an error status. */
         console.log("Something went wrong:" + response);
 	  });
 
@@ -226,6 +231,9 @@ app.controller('content-page', function( $scope, $http, $routeParams, __env ) {
         method: 'GET',
         url: __env.apiUrl + 'pages?filter[name]=' + $routeParams.slug
     }).then(function successCallback(response) {
+        /* this callback will be called asynchronously
+         when the response is available */
+
         $scope.post = response.data[0];
         $scope.loaded = true;
 
@@ -238,19 +246,17 @@ app.controller('content-page', function( $scope, $http, $routeParams, __env ) {
         $scope.pageDesc = window.__env.siteTitle;
 
         document.querySelector('title').innerHTML = $scope.pageTitle + ' - ' + $scope.pageDesc;
-        //console.log($scope.post);
-        // this callback will be called asynchronously
-        // when the response is available
     }, function errorCallback(response) {
-        console.log("Something went wrong:" + response);
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
+        /* called asynchronously if an error occurs
+         or server returns response with an error status. */
+        console.log("Something went wrong: " + response);
     });
 
 });
 
 
-//Paged controller
+/* Paged controller - handles pagination */
+
 app.controller('Paged', function( $scope, $routeParams, $http, __env ) {
 
     $scope.loaded = false;
@@ -261,6 +267,8 @@ app.controller('Paged', function( $scope, $routeParams, $http, __env ) {
         method: 'GET',
         url: __env.apiUrl + 'posts?filter[posts_per_page]=5&page=' + $routeParams.page
     }).then(function successCallback(response, status, headers){
+        /* this callback will be called asynchronously
+         when the response is available */
 
         var currentPage = parseInt($routeParams.page);
         $scope.currentPage = currentPage;
@@ -274,9 +282,9 @@ app.controller('Paged', function( $scope, $routeParams, $http, __env ) {
         document.querySelector('title').innerHTML = $scope.pageTitle;
 
     }, function errorCallback(response) {
-        console.log("Something went wrong:" + response);
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
+        /* called asynchronously if an error occurs
+         or server returns response with an error status. */
+         console.log("Something went wrong: " + response);
     });
 });
 
@@ -297,14 +305,13 @@ app.directive('searchForm', function() {
                         method: 'GET',
                         url: __env.apiUrl + 'posts?filter[s]=' + $routeParams.param1
                     }).then(function successCallback(response) {
-                        console.log( response.data );
+                        /* this callback will be called asynchronously
+                         when the response is available */
                         $scope.posts = response.data;
-                        // this callback will be called asynchronously
-                        // when the response is available
                     }, function errorCallback(response) {
-                        console.log("Something went wrong" + response);
-                        // called asynchronously if an error occurs
-                        // or server returns response with an error status.
+                        /* called asynchronously if an error occurs
+                         or server returns response with an error status. */
+                        console.log("Something went wrong: " + response);
                     });
                 }
             }
@@ -316,14 +323,14 @@ app.directive('searchForm', function() {
 
 app.directive( 'cleanblogHeader', function () {
     return {
-        restrict: 'EA', //E = element, A = attribute, C = class, M = comment
+        restrict: 'EA', /* E = element, A = attribute, C = class, M = comment */
         scope: true,
         templateUrl: pnLocalized.parts + 'dir-cleanblog-header.html',
         controller: function ( $scope ) {
-            //console.log( $scope.post.title.rendered );
+            /* console.log( $scope.post.title.rendered ); */
 
         }
-        //link: function ($scope, element, attrs) { } //DOM manipulation
+        /* link: function ($scope, element, attrs) { } //DOM manipulation */
     }
 });
 
@@ -332,14 +339,14 @@ app.directive( 'cleanblogHeader', function () {
 
 app.directive( 'postMeta', function () {
     return {
-        restrict: 'EA', //E = element, A = attribute, C = class, M = comment
+        restrict: 'EA', /* E = element, A = attribute, C = class, M = comment */
         scope: true,
         templateUrl: pnLocalized.parts + 'dir-post-meta.html',
         controller: function ( $scope ) {
-            //console.log(  );
+            /* console.log(  ); */
 
         }
-        //link: function ($scope, element, attrs) { } //DOM manipulation
+        /* link: function ($scope, element, attrs) { } //DOM manipulation */
     }
 });
 
@@ -347,14 +354,14 @@ app.directive( 'postMeta', function () {
 
 app.directive( 'postSocial', function () {
     return {
-        restrict: 'EA', //E = element, A = attribute, C = class, M = comment
+        restrict: 'EA', /* E = element, A = attribute, C = class, M = comment */
         scope: true,
         templateUrl: pnLocalized.parts + 'dir-post-social.html',
         controller: function ( $scope ) {
-            //console.log(  );
+            /* console.log(  ); */
 
         }
-        //link: function ($scope, element, attrs) { } //DOM manipulation
+        /* link: function ($scope, element, attrs) { } //DOM manipulation */
     }
 });
 
@@ -362,28 +369,17 @@ app.directive( 'postSocial', function () {
 
 app.directive( 'postComments', function () {
     return {
-        restrict: 'EA', //E = element, A = attribute, C = class, M = comment
+        restrict: 'EA', /* E = element, A = attribute, C = class, M = comment */
         scope: true,
         templateUrl: pnLocalized.parts + 'dir-post-comments.html',
         controller: function ( $scope ) {
-            //console.log(  );
+            /*console.log(  ); */
 
         }
-        //link: function ($scope, element, attrs) { } //DOM manipulation
+        /*link: function ($scope, element, attrs) { } //DOM manipulation */
     }
 });
 
-app.directive( 'fadeIn', function($timeout){
-    return {
-        restrict: 'A',
-        link: function($scope, $element, attrs){
-            $element.addClass("ng-hide-remove");
-            $element.on('load', function() {
-                $element.addClass("ng-hide-add");
-            });
-        }
-    };
-});
 
 /* postsNavLink Directive */
 app.directive( 'postsNavLink', function() {
